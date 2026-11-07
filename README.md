@@ -26,6 +26,7 @@ public/
     images/
       avatar.jpg                     Ảnh đại diện (hero)
       gala-performance-poster.jpg    Ảnh bìa video tiết mục Gala
+      tools/                         Icon 3D công cụ dựng video (hero)
       activities/                    Ảnh 4 thẻ "Hoạt động công ty"
       videos/<videoId>.jpg           Ảnh bìa video TikTok (tạo tự động, xem bên dưới)
     videos/
@@ -62,6 +63,9 @@ và `src` ảnh thành `/assets/images/videos/<id>.jpg` → chạy `npm run cove
 
 ## Ghi chú về ảnh
 
+**Thay ảnh nhưng giữ nguyên tên file?** Trình duyệt người xem lưu ảnh 7 ngày, nên hãy tăng số phiên bản trong link ảnh ở `index.html` (vd. `clapper.webp?v=2` → `?v=3`) để ai cũng thấy ảnh mới ngay.
+
+
 Nên nén ảnh (vd. [squoosh.app](https://squoosh.app)) xuống dưới ~200 KB mỗi ảnh.
 
 Ảnh/video gốc đặt ở thư mục gốc dự án đã được `.gitignore` bỏ qua — chỉ bản tối ưu trong `public/assets` được đưa lên GitHub.
@@ -89,3 +93,7 @@ git push origin main
 5. Mỗi lần `git push` lên `main`, Hostinger tự deploy lại (nếu bật auto-deploy); hoặc bấm **Redeploy** trong hPanel.
 
 Kiểm tra server sống: `https://<tên-miền>/healthz` → `{"ok":true}`.
+
+## Nguồn tài nguyên
+
+- Icon 3D công cụ dựng video ở phần đầu trang (`public/assets/images/tools/`): [Microsoft Fluent Emoji](https://github.com/microsoft/fluentui-emoji) — giấy phép MIT, © Microsoft Corporation.
