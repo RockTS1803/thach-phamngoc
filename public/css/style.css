@@ -505,6 +505,12 @@ use[href="#i-play"] { fill: currentColor; }
 }
 .tag { left: 14px; background: rgba(15,10,35,.62); border: 1px solid var(--border-strong); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
 .tag .icon { width: 16px; height: 16px; }
+/* several tags side by side (wrap onto a new line on narrow cards) */
+.tags {
+  position: absolute; z-index: 2; left: 14px; right: 14px; bottom: 14px;
+  display: flex; flex-wrap: wrap-reverse; gap: 8px; pointer-events: none;
+}
+.tags .tag { position: static; }
 .award { right: 14px; top: 14px; bottom: auto; background: linear-gradient(135deg, #ffe08a, #ffb347); color: #3b2300; box-shadow: 0 8px 24px rgba(255,180,70,.45); }
 .award .icon { width: 16px; height: 16px; }
 .act__media img[src*="tvnd"] { object-position: 50% 0%; }
