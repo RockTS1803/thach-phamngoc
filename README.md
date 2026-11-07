@@ -32,6 +32,7 @@ public/
     videos/
       gala-performance.mp4           Video tiết mục văn nghệ độc lạ
       tiktok/<videoId>.mp4           Video triệu view tải sẵn (tạo tự động, xem bên dưới)
+      clips/hien-truong-vu-an.mp4    Đoạn video minh họa mục Định hướng (0:29–1:16)
 scripts/tiktok-media.js    Tải sẵn video TikTok + tạo ảnh bìa từ frame đầu
 video-goc/                 (tuỳ chọn, không lên GitHub) file xuất gốc để nén thay vì tải từ TikTok
 ```
@@ -63,6 +64,11 @@ Script đọc mọi link `https://www.tiktok.com/@…/video/<id>` trong `public/
 **Nguồn video:** script ưu tiên file xuất gốc trong thư mục `video-goc/` (đặt tên `1.mp4` … `7.mp4` theo thứ tự trên trang,
 hoặc `<id>.mp4`; nhận .mp4 .mov .mkv .webm .m4v). Không có thì tải từ TikTok. TikTok đôi khi chặn tạm thời
 ("Please wait…") — script sẽ tự nghỉ và thử lại; nếu vẫn lỗi thì chạy lại sau ít phút, hoặc đặt file gốc vào `video-goc/`.
+
+**Video minh họa mục "Định hướng tương lai":** file là đoạn 0:29–1:16 của video hiện trường vụ án. Nền tự chạy không tiếng từ 0:56 tới 1:16 rồi lặp lại
+(mốc 0:56 = giây 27 của đoạn, chỉnh ở thuộc tính `data-loop-start` trong `index.html`); nút **Xem video**
+phát lại đoạn này có âm thanh gốc. Muốn đổi đoạn: sửa `start`/`end` (giây) trong mảng `CLIPS` ở `scripts/tiktok-media.js`
+rồi chạy `npm run tiktok -- --force-clips`.
 
 **Thêm video mới:** copy một khối `<li class="reveal">…</li>` trong mục Video nổi bật, đổi link, tiêu đề, số view
 và `src` ảnh thành `/assets/images/videos/<id>.jpg` → chạy `npm run tiktok` → commit file mới.

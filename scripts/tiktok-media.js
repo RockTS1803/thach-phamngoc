@@ -176,12 +176,75 @@ async function processVideo(v) {
   }
 }
 
+/* ---------- Đoạn cắt (clip) ----------
+ * Một đoạn của video TikTok, giữ nguyên âm thanh gốc. Trang web phát đoạn này:
+ * tự chạy không tiếng, và nút "Xem video" phát lại có tiếng.
+ * Sửa start/end (giây) rồi chạy: npm run tiktok -- --force-clips
+ * (đặt file gốc vào video-goc/<id>.mp4 nếu TikTok chặn tải) */
+const CLIPS = [
+  {
+    name: 'hien-truong-vu-an',
+    url: 'https://www.tiktok.com/@thuvienphapluat.vn/video/7700922333413887253',
+    start: 29, // 0:29
+    end: 76, //   1:16
+  },
+];
+const CLIP_DIR = path.join(ROOT, 'public', 'assets', 'videos', 'clips');
+const CLIP_POSTER_DIR = path.join(ROOT, 'public', 'assets', 'images', 'clips');
+const FORCE_CLIPS = FORCE || process.argv.includes('--force-clips');
+
+async function processClip(clip) {
+  const id = clip.url.match(/\/video\/(\d+)/)[1];
+  const out = path.join(CLIP_DIR, `${clip.name}.mp4`);
+  const poster = path.join(CLIP_POSTER_DIR, `${clip.name}.jpg`);
+  if (!FORCE_CLIPS && fs.existsSync(out) && fs.existsSync(poster)) return 'bỏ qua (đã có)';
+
+  const tmp = fs.mkdtempSync(path.join(os.tmpdir(), 'clip-'));
+  try {
+    let raw = findSource({ id, index: -1 });
+    if (!raw) {
+      const info = await getVideoInfo(clip.url);
+      if (!info.playAddr) throw new Error('không có link video');
+      raw = path.join(tmp, 'raw.mp4');
+      await download(info.playAddr, raw, { 'User-Agent': UA, Referer: info.referer, Cookie: info.cookie, Range: 'bytes=0-' });
+    }
+    // -ss/-to after -i = cắt chính xác tới từng khung hình
+    const tmpOut = `${out}.tmp.mp4`;
+    await ffmpeg([
+      '-i', raw, '-ss', String(clip.start), '-to', String(clip.end),
+      '-vf', "scale='min(720,iw)':-2",
+      '-c:v', 'libx264', '-preset', 'slow', '-crf', '26', '-profile:v', 'high', '-pix_fmt', 'yuv420p',
+      '-c:a', 'aac', '-b:a', '128k', '-ac', '2',
+      '-movflags', '+faststart', tmpOut,
+    ]);
+    fs.renameSync(tmpOut, out);
+    const png = path.join(tmp, 'p.png');
+    await ffmpeg(['-i', out, '-frames:v', '1', png]);
+    await sharp(png).resize({ width: 720, withoutEnlargement: true }).jpeg({ quality: 80, mozjpeg: true }).toFile(poster);
+    return `đoạn ${clip.start}s–${clip.end}s → ${sizeMB(out)}`;
+  } finally {
+    fs.rmSync(tmp, { recursive: true, force: true });
+  }
+}
+
 (async () => {
   fs.mkdirSync(COVER_DIR, { recursive: true });
   fs.mkdirSync(VIDEO_DIR, { recursive: true });
+  fs.mkdirSync(CLIP_DIR, { recursive: true });
+  fs.mkdirSync(CLIP_POSTER_DIR, { recursive: true });
   const videos = findVideos();
-  console.log(`Tìm thấy ${videos.length} video TikTok trong index.html\n`);
+  console.log(`Tìm thấy ${videos.length} video TikTok trong index.html, ${CLIPS.length} đoạn cắt\n`);
   let failed = 0;
+  if (!COVERS_ONLY) {
+    for (const clip of CLIPS) {
+      try {
+        console.log(`✓ đoạn "${clip.name}": ${await processClip(clip)}`);
+      } catch (err) {
+        failed++;
+        console.error(`✗ đoạn "${clip.name}": ${err.message}`);
+      }
+    }
+  }
   for (const v of videos) {
     try {
       const result = await processVideo(v);

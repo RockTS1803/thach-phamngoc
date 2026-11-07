@@ -43,6 +43,7 @@
       <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></symbol>
       <symbol id="i-moon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></symbol>
       <symbol id="i-package" viewBox="0 0 24 24"><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5M12 22V12M7.5 4.27l9 5.15"/></symbol>
+      <symbol id="i-mute" viewBox="0 0 24 24"><path d="M11 5 6 9H2v6h4l5 4z"/><path d="m22 9-6 6M16 9l6 6"/></symbol>
       <symbol id="i-expand" viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></symbol>
       <symbol id="i-up" viewBox="0 0 24 24"><path d="M12 19V5M5 12l7-7 7 7"/></symbol>
     </defs>
@@ -403,8 +404,30 @@
               <span><svg class="icon"><use href="#i-clapper"/></svg>Tái&nbsp;hiện vụ&nbsp;án</span>
               <span><svg class="icon"><use href="#i-sparkles"/></svg>Nội dung sinh&nbsp;động</span>
             </div>
-            <a class="btn btn--light" href="#top">Về&nbsp;đầu&nbsp;trang <svg class="icon"><use href="#i-up"/></svg></a>
+            <div class="future__actions">
+              <button class="btn btn--light" type="button"
+                data-video="/assets/videos/clips/hien-truong-vu-an.mp4"
+                data-poster="/assets/images/clips/hien-truong-vu-an.jpg">
+                <span class="btn__play btn__play--solid"><svg class="icon"><use href="#i-play"/></svg></span>
+                Xem&nbsp;video
+              </button>
+              <a class="btn btn--outline" href="#top">Về&nbsp;đầu&nbsp;trang <svg class="icon"><use href="#i-up"/></svg></a>
+            </div>
           </div>
+          <!-- Video minh họa: file là đoạn 0:29–1:16 của video gốc.
+               Nền tự chạy không tiếng từ 0:56 (= giây 27 của đoạn) tới hết rồi lặp lại;
+               nút "Xem video" phát cả đoạn 0:29–1:16 có tiếng. -->
+          <figure class="future__media">
+            <video class="future__clip" muted playsinline preload="none" data-loop-start="27"
+              poster="/assets/images/clips/hien-truong-vu-an-0056.jpg"
+              src="/assets/videos/clips/hien-truong-vu-an.mp4#t=27"
+              aria-label="Video minh họa dựng lại hiện trường vụ án, tự chạy không tiếng"></video>
+            <span class="future__badge" aria-hidden="true"><svg class="icon"><use href="#i-mute"/></svg>Không&nbsp;tiếng</span>
+            <button class="future__open" type="button"
+              data-video="/assets/videos/clips/hien-truong-vu-an.mp4"
+              data-poster="/assets/images/clips/hien-truong-vu-an.jpg"
+              aria-label="Xem video minh họa có âm thanh"></button>
+          </figure>
         </div>
       </div>
     </section>

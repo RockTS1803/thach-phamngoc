@@ -217,6 +217,30 @@
     if (lastTrigger) lastTrigger.focus({ preventScroll: true });
   });
 
+  /* ---------- Muted looping clip (Định hướng section) ----------
+     Plays silently only while on screen; pauses while the full video (with sound) is open. */
+  const clip = document.querySelector('.future__clip');
+  if (clip && !reduceMotion && 'IntersectionObserver' in window) {
+    // loop only the [data-loop-start … end] part of the file (here 0:56–1:16 of the original)
+    const loopStart = parseFloat(clip.dataset.loopStart || '0');
+    const toLoopStart = () => { if (Math.abs(clip.currentTime - loopStart) > 0.3) clip.currentTime = loopStart; };
+    clip.addEventListener('loadedmetadata', toLoopStart);
+    clip.addEventListener('ended', () => { clip.currentTime = loopStart; clip.play().catch(() => {}); });
+    let clipVisible = false;
+    const syncClip = () => {
+      if (clipVisible && !modal.open) {
+        if (clip.preload === 'none') clip.preload = 'auto';
+        clip.play().catch(() => {});
+      } else {
+        clip.pause();
+      }
+    };
+    new IntersectionObserver(([entry]) => { clipVisible = entry.isIntersecting; syncClip(); }, { threshold: 0.25 }).observe(clip);
+    modal.addEventListener('close', syncClip);
+    document.querySelectorAll('[data-video]').forEach((btn) => btn.addEventListener('click', () => clip.pause()));
+    document.addEventListener('visibilitychange', () => { if (document.hidden) clip.pause(); else syncClip(); });
+  }
+
   /* ---------- Image lightbox (one image at a time) ---------- */
   const lb = document.getElementById('lightbox');
   const lbImg = lb.querySelector('.lightbox__img');
