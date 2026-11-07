@@ -15,6 +15,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&family=Caveat:wght@500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/css/style.css">
+  <script>(function(){var t;try{t=localStorage.getItem('theme')}catch(e){}if(t!=='light'&&t!=='dark')t='dark';document.documentElement.dataset.theme=t;document.querySelector('meta[name=theme-color]').content=t==='light'?'#f7f3ff':'#0d0a1f'})();</script>
   <script>document.documentElement.classList.add('js');if(/^(localhost|127\.0\.0\.1)$/.test(location.hostname))document.documentElement.classList.add('dev')</script>
   <script src="/js/main.js" defer></script>
 </head>
@@ -39,6 +40,8 @@
       <symbol id="i-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></symbol>
       <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></symbol>
       <symbol id="i-close" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></symbol>
+      <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></symbol>
+      <symbol id="i-moon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></symbol>
       <symbol id="i-up" viewBox="0 0 24 24"><path d="M12 19V5M5 12l7-7 7 7"/></symbol>
     </defs>
   </svg>
@@ -60,6 +63,10 @@
         <a href="#dinh-huong">Định hướng</a>
       </nav>
       <div class="nav__actions">
+        <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Chuyển sang giao diện sáng" title="Chuyển sang giao diện sáng">
+          <svg class="icon icon--lg theme-toggle__sun" aria-hidden="true"><use href="#i-sun"/></svg>
+          <svg class="icon icon--lg theme-toggle__moon" aria-hidden="true"><use href="#i-moon"/></svg>
+        </button>
         <a class="btn btn--light btn--sm" href="#video">Xem video <svg class="icon"><use href="#i-arrow"/></svg></a>
         <button class="nav__toggle" id="nav-toggle" aria-label="Mở menu" aria-expanded="false" aria-controls="nav-links">
           <svg class="icon icon--lg"><use href="#i-menu"/></svg>

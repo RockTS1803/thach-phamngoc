@@ -127,6 +127,29 @@
   modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
   modal.addEventListener('close', () => video.pause());
 
+  /* ---------- Light / dark theme ---------- */
+  const root = document.documentElement;
+  const themeBtn = document.getElementById('theme-toggle');
+  const themeMeta = document.querySelector('meta[name="theme-color"]');
+  const syncThemeUI = () => {
+    const light = root.dataset.theme === 'light';
+    const label = light ? 'Chuyển sang giao diện tối' : 'Chuyển sang giao diện sáng';
+    themeBtn.setAttribute('aria-label', label);
+    themeBtn.title = label;
+    if (themeMeta) themeMeta.content = light ? '#f7f3ff' : '#0d0a1f';
+  };
+  const applyTheme = (theme) => {
+    root.dataset.theme = theme;
+    try { localStorage.setItem('theme', theme); } catch (e) { /* storage blocked */ }
+    syncThemeUI();
+  };
+  syncThemeUI();
+  themeBtn.addEventListener('click', () => {
+    const next = root.dataset.theme === 'light' ? 'dark' : 'light';
+    if (document.startViewTransition && !reduceMotion) document.startViewTransition(() => applyTheme(next));
+    else applyTheme(next);
+  });
+
   /* ---------- Footer year ---------- */
   const y = document.getElementById('year');
   if (y) y.textContent = new Date().getFullYear();
