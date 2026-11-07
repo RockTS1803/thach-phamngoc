@@ -1,0 +1,426 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Phạm Ngọc Thạch — Nhân viên dựng video Ban Tin Tức</title>
+  <meta name="description" content="Phạm Ngọc Thạch — Nhân viên dựng video Ban Tin Tức. Edit video cho TikTok, YouTube, Facebook với nhiều video đạt hàng triệu lượt xem.">
+  <meta name="theme-color" content="#0d0a1f">
+  <meta property="og:title" content="Phạm Ngọc Thạch — Video Editor Ban Tin Tức">
+  <meta property="og:description" content="Dựng video đa nền tảng, ứng dụng AI, nhiều video đạt hàng triệu lượt xem.">
+  <meta property="og:image" content="/assets/images/avatar.jpg">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&family=Caveat:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+  <script>document.documentElement.classList.add('js');if(/^(localhost|127\.0\.0\.1)$/.test(location.hostname))document.documentElement.classList.add('dev')</script>
+  <script src="/js/main.js" defer></script>
+</head>
+<body>
+  <!-- Icon sprite -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 5l7 7-7 7"/></symbol>
+      <symbol id="i-play" viewBox="0 0 24 24"><path d="M8 5.5v13l11-6.5z"/></symbol>
+      <symbol id="i-external" viewBox="0 0 24 24"><path d="M15 3h6v6M10 14 21 3M21 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5"/></symbol>
+      <symbol id="i-eye" viewBox="0 0 24 24"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></symbol>
+      <symbol id="i-film" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="18" rx="2"/><path d="M7 3v18M17 3v18M2 8h5M2 16h5M17 8h5M17 16h5M2 12h20"/></symbol>
+      <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></symbol>
+      <symbol id="i-sparkles" viewBox="0 0 24 24"><path d="M11 3l1.9 5.1L18 10l-5.1 1.9L11 17l-1.9-5.1L4 10l5.1-1.9z"/><path d="M19 14l.8 2.2L22 17l-2.2.8L19 20l-.8-2.2L16 17l2.2-.8z"/></symbol>
+      <symbol id="i-trend" viewBox="0 0 24 24"><path d="M22 7 13.5 15.5 8.5 10.5 2 17"/><path d="M16 7h6v6"/></symbol>
+      <symbol id="i-trophy" viewBox="0 0 24 24"><path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0z"/><path d="M17 5h3v2a3 3 0 0 1-3 3M7 5H4v2a3 3 0 0 0 3 3"/></symbol>
+      <symbol id="i-layers" viewBox="0 0 24 24"><path d="m12 2 10 5-10 5L2 7z"/><path d="m2 17 10 5 10-5M2 12l10 5 10-5"/></symbol>
+      <symbol id="i-video" viewBox="0 0 24 24"><path d="m22 8-6 4 6 4z"/><rect x="2" y="6" width="14" height="12" rx="2"/></symbol>
+      <symbol id="i-clapper" viewBox="0 0 24 24"><path d="M20.2 6 3 11l-.9-2.4c-.3-1.1.3-2.2 1.3-2.5l13.5-4c1.1-.3 2.2.3 2.5 1.3z"/><path d="m6.2 5.3 3.1 3.9M12.4 3.4l3.1 4M3 11h18v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></symbol>
+      <symbol id="i-music" viewBox="0 0 24 24"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></symbol>
+      <symbol id="i-camera" viewBox="0 0 24 24"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3z"/><circle cx="12" cy="13" r="3"/></symbol>
+      <symbol id="i-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></symbol>
+      <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></symbol>
+      <symbol id="i-close" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></symbol>
+      <symbol id="i-up" viewBox="0 0 24 24"><path d="M12 19V5M5 12l7-7 7 7"/></symbol>
+    </defs>
+  </svg>
+
+  <a class="skip-link" href="#main">Bỏ qua đến nội dung</a>
+
+  <!-- ============ NAV ============ -->
+  <header class="nav" id="nav">
+    <div class="nav__inner container">
+      <a class="brand" href="#top" aria-label="Phạm Ngọc Thạch — về đầu trang">
+        <span class="brand__mark" aria-hidden="true">NT</span>
+        <span class="brand__name">ngọcthạch</span>
+      </a>
+      <nav class="nav__links" id="nav-links" aria-label="Điều hướng chính">
+        <a href="#top" class="is-active">Trang chủ</a>
+        <a href="#cong-viec">Công việc</a>
+        <a href="#video">Video nổi bật</a>
+        <a href="#hoat-dong">Hoạt động</a>
+        <a href="#dinh-huong">Định hướng</a>
+      </nav>
+      <div class="nav__actions">
+        <a class="btn btn--light btn--sm" href="#video">Xem video <svg class="icon"><use href="#i-arrow"/></svg></a>
+        <button class="nav__toggle" id="nav-toggle" aria-label="Mở menu" aria-expanded="false" aria-controls="nav-links">
+          <svg class="icon icon--lg"><use href="#i-menu"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- ============ HERO ============ -->
+    <section class="hero" id="top" data-section>
+      <div class="scene" aria-hidden="true">
+        <div class="scene__sky"></div>
+        <div class="scene__stars"></div>
+        <div class="scene__sun"></div>
+        <svg class="scene__hills" viewBox="0 0 1440 320" preserveAspectRatio="none">
+          <path class="h1" d="M0 190 C160 120 300 150 420 130 C560 105 640 160 760 150 C900 138 1000 90 1140 110 C1260 128 1360 150 1440 140 V320 H0Z"/>
+          <path class="h2" d="M0 230 C140 200 260 215 380 205 C520 190 600 230 760 222 C900 214 1040 186 1180 200 C1300 212 1380 226 1440 220 V320 H0Z"/>
+        </svg>
+        <div class="scene__water"></div>
+        <img class="scene__photo" src="/assets/images/hero-bg.jpg" alt="" data-optional>
+        <div class="scene__shade"></div>
+      </div>
+
+      <div class="hero__inner container">
+        <div class="hero__copy">
+          <p class="pill reveal"><span>Video Editor</span><i></i><span>Ban Tin Tức</span><i></i><span>TVPL</span></p>
+          <h1 class="hero__title reveal">
+            Phạm Ngọc<br><span class="grad">Thạch.</span>
+          </h1>
+          <p class="hero__role reveal">Nhân viên dựng video Ban Tin Tức</p>
+          <p class="hero__lead reveal">
+            Hiện tại em đang đảm nhận vị trí edit các video cho các nền tảng TikTok, YouTube và Facebook.
+            Trong quá trình làm việc em luôn cập nhật các luật của các nền tảng để tránh vi phạm gây ảnh hưởng
+            đến các kênh truyền thông của công ty.
+          </p>
+          <div class="hero__cta reveal">
+            <a class="btn btn--light" href="#video">Xem video nổi bật <svg class="icon"><use href="#i-arrow"/></svg></a>
+            <button class="btn btn--ghost" type="button" id="showreel-btn" hidden
+              data-video="/assets/videos/showreel.mp4" data-poster="/assets/images/showreel-poster.jpg">
+              <span class="btn__play"><svg class="icon"><use href="#i-play"/></svg></span> Xem showreel
+            </button>
+          </div>
+        </div>
+
+        <div class="hero__visual reveal" aria-hidden="false">
+          <div class="arch" aria-hidden="true"></div>
+          <figure class="portrait media" data-label="avatar.jpg">
+            <img src="/assets/images/avatar.jpg" alt="Ảnh chân dung Phạm Ngọc Thạch" width="560" height="700" fetchpriority="high">
+          </figure>
+          <div class="cube cube--a" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+          <div class="cube cube--b" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+          <div class="cube cube--c" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+          <div class="orb" aria-hidden="true"></div>
+          <p class="script" aria-hidden="true">Edit<br>Create<br>Inspire</p>
+          <div class="float-chip">
+            <span class="float-chip__icon"><svg class="icon"><use href="#i-trend"/></svg></span>
+            <span><strong>7,3M</strong> lượt xem<br><small>video cao nhất</small></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="container">
+        <div class="platform-bar reveal">
+          <svg class="icon icon--muted"><use href="#i-layers"/></svg>
+          <span class="platform-bar__label">Nền tảng đang phụ trách</span>
+          <ul class="platform-bar__list">
+            <li><span class="dot dot--tiktok"></span>TikTok</li>
+            <li><span class="dot dot--youtube"></span>YouTube</li>
+            <li><span class="dot dot--facebook"></span>Facebook</li>
+          </ul>
+          <span class="platform-bar__year">2026</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CÔNG VIỆC ============ -->
+    <section class="section" id="cong-viec" data-section>
+      <div class="container">
+        <div class="section__head reveal">
+          <div>
+            <p class="eyebrow">Công việc hiện tại</p>
+            <h2>Dựng video <span class="grad">đa nền tảng</span></h2>
+          </div>
+          <p class="section__aside">
+            Trong quá trình làm việc em cũng cập nhật các xu hướng mới để áp dụng cho công việc,
+            như dùng các công cụ AI để tránh bị đánh bản quyền video và làm video sinh động hơn.
+          </p>
+        </div>
+
+        <div class="cards">
+          <article class="card reveal">
+            <span class="tile tile--violet"><svg class="icon icon--xl"><use href="#i-film"/></svg></span>
+            <h3>Edit video đa nền tảng</h3>
+            <p>Dựng video cho TikTok, YouTube và Facebook — đúng định dạng, nhịp và gu người xem từng nền tảng.</p>
+          </article>
+          <article class="card reveal">
+            <span class="tile tile--amber"><svg class="icon icon--xl"><use href="#i-shield"/></svg></span>
+            <h3>Cập nhật luật nền tảng</h3>
+            <p>Luôn theo dõi chính sách của các nền tảng để tránh vi phạm, bảo vệ các kênh truyền thông của công ty.</p>
+          </article>
+          <article class="card reveal">
+            <span class="tile tile--blue"><svg class="icon icon--xl"><use href="#i-sparkles"/></svg></span>
+            <h3>AI chống bản quyền</h3>
+            <p>Ứng dụng các công cụ AI mới để tránh bị đánh bản quyền video khi sản xuất nội dung.</p>
+          </article>
+          <article class="card reveal">
+            <span class="tile tile--pink"><svg class="icon icon--xl"><use href="#i-video"/></svg></span>
+            <h3>AI làm video sinh động</h3>
+            <p>Kết hợp AI để làm video sinh động, thu hút người xem hơn và bắt kịp xu hướng mới.</p>
+          </article>
+        </div>
+
+        <div class="stats reveal">
+          <div class="stat">
+            <span class="stat__icon"><svg class="icon icon--lg"><use href="#i-film"/></svg></span>
+            <div><strong data-count="7" data-suffix="+">7+</strong><span>Video triệu view</span></div>
+          </div>
+          <div class="stat">
+            <span class="stat__icon"><svg class="icon icon--lg"><use href="#i-eye"/></svg></span>
+            <div><strong data-count="39.5" data-decimals="1" data-suffix="M+">39,5M+</strong><span>Tổng lượt xem</span></div>
+          </div>
+          <div class="stat">
+            <span class="stat__icon"><svg class="icon icon--lg"><use href="#i-trophy"/></svg></span>
+            <div><strong data-count="7.3" data-decimals="1" data-suffix="M">7,3M</strong><span>View cao nhất</span></div>
+          </div>
+          <div class="stat">
+            <span class="stat__icon"><svg class="icon icon--lg"><use href="#i-layers"/></svg></span>
+            <div><strong data-count="3">3</strong><span>Nền tảng</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ VIDEO NỔI BẬT ============ -->
+    <section class="section" id="video" data-section>
+      <div class="container">
+        <div class="section__head reveal">
+          <div>
+            <p class="eyebrow">Video nổi bật</p>
+            <h2>Những video <span class="grad">triệu view</span></h2>
+          </div>
+          <a class="btn btn--outline btn--sm" href="https://www.tiktok.com/@thuvienphapluat.vn" target="_blank" rel="noopener">
+            Kênh TikTok TVPL <svg class="icon"><use href="#i-external"/></svg>
+          </a>
+        </div>
+
+        <ul class="videos" role="list">
+          <li class="reveal">
+            <a class="vcard" href="https://www.tiktok.com/@thuvienphapluat.vn/video/7648214261268892945" target="_blank" rel="noopener">
+              <figure class="vcard__media media" data-label="videos/7648214261268892945.jpg"><img src="/assets/images/videos/7648214261268892945.jpg" alt="" loading="lazy" width="540" height="960"></figure>
+              <span class="vcard__rank">#1</span>
+              <span class="vcard__ext" aria-hidden="true"><svg class="icon"><use href="#i-external"/></svg></span>
+              <span class="vcard__play" aria-hidden="true"><svg class="icon icon--lg"><use href="#i-play"/></svg></span>
+              <div class="vcard__body">
+                <span class="views"><svg class="icon"><use href="#i-eye"/></svg>7,3M view</span>
+                <h3>Từ 15/6/2026, đổi SIM qua điện thoại khác phải xác thực sinh trắc học khuôn mặt</h3>
+              </div>
+            </a>
+          </li>
+          <li class="reveal">
+            <a class="vcard" href="https://www.tiktok.com/@thuvienphapluat.vn/video/7687839876355689749" target="_blank" rel="noopener">
+              <figure class="vcard__media media" data-label="videos/7687839876355689749.jpg"><img src="/assets/images/videos/7687839876355689749.jpg" alt="" loading="lazy" width="540" height="960"></figure>
+              <span class="vcard__rank">#2</span>
+              <span class="vcard__ext" aria-hidden="true"><svg class="icon"><use href="#i-external"/></svg></span>
+              <span class="vcard__play" aria-hidden="true"><svg class="icon icon--lg"><use href="#i-play"/></svg></span>
+              <div class="vcard__body">
+                <span class="views"><svg class="icon"><use href="#i-eye"/></svg>7,0M view</span>
+                <h3>Vợ/chồng đuổi nhau ra khỏi nhà có thể bị phạt đến 10 triệu đồng</h3>
+              </div>
+            </a>
+          </li>
+          <li class="reveal">
+            <a class="vcard" href="https://www.tiktok.com/@thuvienphapluat.vn/video/7657481302874000641" target="_blank" rel="noopener">
+              <figure class="vcard__media media" data-label="videos/7657481302874000641.jpg"><img src="/assets/images/videos/7657481302874000641.jpg" alt="" loading="lazy" width="540" height="960"></figure>
+              <span class="vcard__rank">#3</span>
+              <span class="vcard__ext" aria-hidden="true"><svg class="icon"><use href="#i-external"/></svg></span>
+              <span class="vcard__play" aria-hidden="true"><svg class="icon icon--lg"><use href="#i-play"/></svg></span>
+              <div class="vcard__body">
+                <span class="views"><svg class="icon"><use href="#i-eye"/></svg>6,4M view</span>
+                <h3>Từ 01/7/2026, chia sẻ những thông tin này trên mạng xã hội sẽ bị phạt nặng</h3>
+              </div>
+            </a>
+          </li>
+          <li class="reveal">
+            <a class="vcard" href="https://www.tiktok.com/@thuvienphapluat.vn/video/7674942708443532565" target="_blank" rel="noopener">
+              <figure class="vcard__media media" data-label="videos/7674942708443532565.jpg"><img src="/assets/images/videos/7674942708443532565.jpg" alt="" loading="lazy" width="540" height="960"></figure>
+              <span class="vcard__rank">#4</span>
+              <span class="vcard__ext" aria-hidden="true"><svg class="icon"><use href="#i-external"/></svg></span>
+              <span class="vcard__play" aria-hidden="true"><svg class="icon icon--lg"><use href="#i-play"/></svg></span>
+              <div class="vcard__body">
+                <span class="views"><svg class="icon"><use href="#i-eye"/></svg>5,9M view</span>
+                <h3>Từ 28/9/2026, VNeID tự động khóa tài khoản nếu chưa làm điều này</h3>
+              </div>
+            </a>
+          </li>
+          <li class="reveal">
+            <a class="vcard" href="https://www.tiktok.com/@thuvienphapluat.vn/video/7677449090027851029" target="_blank" rel="noopener">
+              <figure class="vcard__media media" data-label="videos/7677449090027851029.jpg"><img src="/assets/images/videos/7677449090027851029.jpg" alt="" loading="lazy" width="540" height="960"></figure>
+              <span class="vcard__rank">#5</span>
+              <span class="vcard__ext" aria-hidden="true"><svg class="icon"><use href="#i-external"/></svg></span>
+              <span class="vcard__play" aria-hidden="true"><svg class="icon icon--lg"><use href="#i-play"/></svg></span>
+              <div class="vcard__body">
+                <span class="views"><svg class="icon"><use href="#i-eye"/></svg>4,8M view</span>
+                <h3>Sắp tới, án tử hình có thể chỉ còn áp dụng với 4 tội danh</h3>
+              </div>
+            </a>
+          </li>
+          <li class="reveal">
+            <a class="vcard" href="https://www.tiktok.com/@thuvienphapluat.vn/video/7669666374448663829" target="_blank" rel="noopener">
+              <figure class="vcard__media media" data-label="videos/7669666374448663829.jpg"><img src="/assets/images/videos/7669666374448663829.jpg" alt="" loading="lazy" width="540" height="960"></figure>
+              <span class="vcard__rank">#6</span>
+              <span class="vcard__ext" aria-hidden="true"><svg class="icon"><use href="#i-external"/></svg></span>
+              <span class="vcard__play" aria-hidden="true"><svg class="icon icon--lg"><use href="#i-play"/></svg></span>
+              <div class="vcard__body">
+                <span class="views"><svg class="icon"><use href="#i-eye"/></svg>4,1M view</span>
+                <h3>Tin vui cho học sinh khi đạt Học sinh giỏi &amp; Xuất sắc từ năm sau có thể dễ hơn</h3>
+              </div>
+            </a>
+          </li>
+          <li class="reveal">
+            <a class="vcard" href="https://www.tiktok.com/@thuvienphapluat.vn/video/7672240076616682772" target="_blank" rel="noopener">
+              <figure class="vcard__media media" data-label="videos/7672240076616682772.jpg"><img src="/assets/images/videos/7672240076616682772.jpg" alt="" loading="lazy" width="540" height="960"></figure>
+              <span class="vcard__rank">#7</span>
+              <span class="vcard__ext" aria-hidden="true"><svg class="icon"><use href="#i-external"/></svg></span>
+              <span class="vcard__play" aria-hidden="true"><svg class="icon icon--lg"><use href="#i-play"/></svg></span>
+              <div class="vcard__body">
+                <span class="views"><svg class="icon"><use href="#i-eye"/></svg>4,0M view</span>
+                <h3>Việt Nam để Quốc tang Chủ tịch Quốc hội Lào Saysomphone Phomvihane trong 02 ngày</h3>
+              </div>
+            </a>
+          </li>
+          <li class="reveal">
+            <a class="vcard vcard--more" href="https://www.tiktok.com/@thuvienphapluat.vn" target="_blank" rel="noopener">
+              <span class="tile tile--violet"><svg class="icon icon--xl"><use href="#i-trend"/></svg></span>
+              <strong>39,5M+</strong>
+              <span>lượt xem từ 7 video nổi bật</span>
+              <span class="btn btn--light btn--sm">Xem thêm trên TikTok <svg class="icon"><use href="#i-external"/></svg></span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============ HOẠT ĐỘNG ============ -->
+    <section class="section" id="hoat-dong" data-section>
+      <div class="container">
+        <div class="section__head reveal">
+          <div>
+            <p class="eyebrow">Hoạt động công ty</p>
+            <h2>Luôn <span class="grad">hăng hái</span>, nhiệt tình</h2>
+          </div>
+          <p class="section__aside">Luôn hăng hái, nhiệt tình tham gia các hoạt động của công ty — từ hậu trường máy quay đến sân khấu Gala.</p>
+        </div>
+
+        <div class="acts">
+          <article class="act reveal">
+            <figure class="act__media media" data-label="activities/kt-lens.jpg">
+              <img src="/assets/images/activities/kt-lens.jpg" alt="Hậu trường quay phim ngắn KT Lens" loading="lazy" width="800" height="500">
+              <span class="tag"><svg class="icon"><use href="#i-clapper"/></svg>Trợ lý đạo diễn</span>
+            </figure>
+            <div class="act__body">
+              <h3>Phim ngắn KT Lens</h3>
+              <p>Giữ vai trò trợ lý đạo diễn và hậu cần trong buổi quay dự án phim ngắn KT Lens.</p>
+            </div>
+          </article>
+          <article class="act reveal">
+            <figure class="act__media media" data-label="activities/tvnd.jpg">
+              <img src="/assets/images/activities/tvnd.jpg" alt="Tham gia diễn xuất trong series của TVND" loading="lazy" width="800" height="500">
+              <span class="tag"><svg class="icon"><use href="#i-video"/></svg>Diễn viên</span>
+            </figure>
+            <div class="act__body">
+              <h3>Series kịch bản mới TVND</h3>
+              <p>Tham gia làm diễn viên trong series kịch bản mới của TVND.</p>
+            </div>
+          </article>
+          <article class="act act--award reveal">
+            <figure class="act__media media" data-label="activities/gala-nha-trang.jpg">
+              <img src="/assets/images/activities/gala-nha-trang.jpg" alt="Tiết mục văn nghệ đêm Gala Nha Trang 2026" loading="lazy" width="800" height="500">
+              <span class="tag"><svg class="icon"><use href="#i-music"/></svg>Biểu diễn chính</span>
+              <span class="award"><svg class="icon"><use href="#i-trophy"/></svg>Giải 3</span>
+              <button class="act__play" type="button"
+                data-video="/assets/videos/gala-performance.mp4"
+                data-poster="/assets/images/gala-performance-poster.jpg"
+                aria-label="Xem video tiết mục văn nghệ độc lạ đêm Gala Nha Trang 2026">
+                <span class="act__play-btn"><svg class="icon icon--lg"><use href="#i-play"/></svg></span>
+                <span class="act__play-label">Xem tiết mục</span>
+              </button>
+            </figure>
+            <div class="act__body">
+              <h3>Gala Nha Trang 2026</h3>
+              <p>Người biểu diễn chính trong tiết mục văn nghệ độc lạ đêm Gala ở Nha Trang 2026 và đạt giải 3.</p>
+            </div>
+          </article>
+          <article class="act reveal">
+            <figure class="act__media media" data-label="activities/company-party.jpg">
+              <img src="/assets/images/activities/company-party.jpg" alt="Hỗ trợ quay chụp tiệc công ty" loading="lazy" width="800" height="500">
+              <span class="tag"><svg class="icon"><use href="#i-camera"/></svg>Setup · Quay · Chụp</span>
+            </figure>
+            <div class="act__body">
+              <h3>Tiệc công ty</h3>
+              <p>Trong các buổi tiệc công ty luôn hỗ trợ setup, quay, chụp ảnh cho buổi tiệc và các tiết mục văn nghệ.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ ĐỊNH HƯỚNG ============ -->
+    <section class="section section--last" id="dinh-huong" data-section>
+      <div class="container">
+        <div class="future reveal">
+          <div class="future__bg" aria-hidden="true">
+            <div class="scene__sky"></div>
+            <div class="scene__sun"></div>
+            <img src="/assets/images/future-bg.jpg" alt="" data-optional loading="lazy">
+          </div>
+          <div class="future__content">
+            <p class="eyebrow">Định hướng tương lai</p>
+            <h2>Dựng lại <span class="grad">hiện trường vụ án.</span></h2>
+            <p>
+              Xây dựng thêm kênh vệ tinh của TVPL (hoặc 1 mảng khác của kênh TVPL) chuyên dựng lại
+              hiện trường các vụ án để nội dung của kênh sinh động hơn.
+            </p>
+            <div class="future__chips">
+              <span><svg class="icon"><use href="#i-target"/></svg>Kênh vệ tinh TVPL</span>
+              <span><svg class="icon"><use href="#i-clapper"/></svg>Tái hiện vụ án</span>
+              <span><svg class="icon"><use href="#i-sparkles"/></svg>Nội dung sinh động</span>
+            </div>
+            <a class="btn btn--light" href="#top">Về đầu trang <svg class="icon"><use href="#i-up"/></svg></a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <a class="brand" href="#top" aria-label="Về đầu trang">
+        <span class="brand__mark" aria-hidden="true">NT</span>
+        <span class="brand__name">ngọcthạch</span>
+      </a>
+      <p>© <span id="year">2026</span> Phạm Ngọc Thạch · Nhân viên dựng video Ban Tin Tức</p>
+    </div>
+  </footer>
+
+  <!-- Section progress (desktop) -->
+  <nav class="progress" aria-label="Tiến độ trang">
+    <a href="#top" data-target="top">01</a>
+    <a href="#cong-viec" data-target="cong-viec">02</a>
+    <a href="#video" data-target="video">03</a>
+    <a href="#hoat-dong" data-target="hoat-dong">04</a>
+    <a href="#dinh-huong" data-target="dinh-huong">05</a>
+  </nav>
+
+  <!-- Showreel modal -->
+  <dialog class="modal" id="video-modal" aria-label="Trình phát video">
+    <button class="modal__close" type="button" aria-label="Đóng video" data-close>
+      <svg class="icon icon--lg"><use href="#i-close"/></svg>
+    </button>
+    <video controls playsinline preload="none"></video>
+  </dialog>
+</body>
+</html>

@@ -1,0 +1,23 @@
+{
+  "name": "thach-phamngoc",
+  "version": "1.0.0",
+  "description": "Website giới thiệu bản thân - Phạm Ngọc Thạch, Nhân viên dựng video Ban Tin Tức",
+  "main": "server.js",
+  "private": true,
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js",
+    "covers": "node scripts/tiktok-covers.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "compression": "^1.7.4",
+    "express": "^4.21.2"
+  },
+  "devDependencies": {
+    "@ffmpeg-installer/ffmpeg": "^1.1.0",
+    "sharp": "^0.33.5"
+  }
+}
