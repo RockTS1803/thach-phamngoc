@@ -581,6 +581,22 @@ use[href="#i-play"] { fill: currentColor; }
   max-width: calc(100vw - 34px); max-height: calc(100svh - 120px);
   border-radius: var(--radius); background: #000;
 }
+.modal__tiktok {
+  display: block; border: 0; background: #000; border-radius: var(--radius);
+  height: min(calc(100svh - 150px), 760px); aspect-ratio: 9 / 16;
+  width: auto; max-width: calc(100vw - 34px);
+}
+.modal__source {
+  position: absolute; left: 50%; bottom: -56px; transform: translateX(-50%);
+  display: inline-flex; align-items: center; gap: 8px; white-space: nowrap;
+  min-height: 44px; padding: 0 18px; border-radius: 999px;
+  background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.3); color: #fff;
+  font-size: .875rem; font-weight: 600;
+}
+.modal__source:hover { background: rgba(255,255,255,.22); }
+.modal__source .icon { width: 16px; height: 16px; }
+/* touch screens have no hover: always show the play badge on video cards */
+@media (hover: none) { .vcard__play { opacity: 1; transform: translate(-50%, -50%) scale(1); } }
 .modal__close {
   position: absolute; top: -56px; right: 0; width: 44px; height: 44px; border-radius: 50%;
   display: grid; place-items: center; background: rgba(255,255,255,.12); border: 1px solid var(--border-strong);

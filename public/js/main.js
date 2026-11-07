@@ -103,9 +103,20 @@
   /* ---------- Video modal ---------- */
   const modal = document.getElementById('video-modal');
   const video = modal.querySelector('video');
+  const sourceLink = modal.querySelector('.modal__source');
   let lastTrigger = null;
+
+  const clearTikTok = () => {
+    const frame = modal.querySelector('iframe');
+    if (frame) frame.remove(); // removing the iframe stops playback
+    sourceLink.hidden = true;
+  };
+
+  // Local mp4 (Gala performance, showreel)
   const openVideo = (trigger) => {
     lastTrigger = trigger;
+    clearTikTok();
+    video.hidden = false;
     if (video.getAttribute('src') !== trigger.dataset.video) {
       video.src = trigger.dataset.video;
       if (trigger.dataset.poster) video.poster = trigger.dataset.poster; else video.removeAttribute('poster');
@@ -115,6 +126,35 @@
   };
   document.querySelectorAll('[data-video]').forEach((btn) => btn.addEventListener('click', () => openVideo(btn)));
 
+  // TikTok videos play inside the page via TikTok's embed player
+  const openTikTok = (card, id) => {
+    lastTrigger = card;
+    clearTikTok();
+    video.pause();
+    video.hidden = true;
+    const frame = document.createElement('iframe');
+    frame.className = 'modal__tiktok';
+    frame.src = `https://www.tiktok.com/player/v1/${id}?autoplay=1&loop=0&music_info=1&description=1&rel=0&native_context_menu=1`;
+    frame.title = card.querySelector('h3')?.textContent.trim() || 'Video TikTok';
+    frame.allow = 'autoplay; fullscreen; encrypted-media; picture-in-picture; clipboard-write';
+    frame.allowFullscreen = true;
+    frame.referrerPolicy = 'strict-origin-when-cross-origin';
+    modal.insertBefore(frame, sourceLink);
+    sourceLink.href = card.href;
+    sourceLink.hidden = false;
+    modal.showModal();
+  };
+  document.querySelectorAll('a.vcard[href*="/video/"]').forEach((card) => {
+    const id = (card.href.match(/\/video\/(\d+)/) || [])[1];
+    if (!id) return;
+    card.addEventListener('click', (e) => {
+      // keep ctrl/cmd/shift/middle-click = open TikTok in a new tab
+      if (e.ctrlKey || e.metaKey || e.shiftKey || e.button !== 0) return;
+      e.preventDefault();
+      openTikTok(card, id);
+    });
+  });
+
   // Showreel button appears only when assets/videos/showreel.mp4 exists
   const reelBtn = document.getElementById('showreel-btn');
   fetch(reelBtn.dataset.video, { method: 'HEAD' })
@@ -122,10 +162,13 @@
     .catch(() => {});
 
   const closeModal = () => { video.pause(); modal.close(); };
-  modal.addEventListener('close', () => { if (lastTrigger) lastTrigger.focus(); });
   modal.querySelector('[data-close]').addEventListener('click', closeModal);
   modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
-  modal.addEventListener('close', () => video.pause());
+  modal.addEventListener('close', () => {
+    video.pause();
+    clearTikTok();
+    if (lastTrigger) lastTrigger.focus({ preventScroll: true });
+  });
 
   /* ---------- Light / dark theme ---------- */
   const root = document.documentElement;
