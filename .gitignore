@@ -20,3 +20,6 @@ build/
 /*.mp4
 /*.MP4
 /*.mov
+
+# File video gốc để script npm run tiktok nén (không đưa lên GitHub)
+/video-goc/

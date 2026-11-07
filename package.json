@@ -7,7 +7,8 @@
   "scripts": {
     "start": "node server.js",
     "dev": "node --watch server.js",
-    "covers": "node scripts/tiktok-covers.js"
+    "tiktok": "node scripts/tiktok-media.js",
+    "covers": "node scripts/tiktok-media.js --covers-only"
   },
   "engines": {
     "node": ">=18"

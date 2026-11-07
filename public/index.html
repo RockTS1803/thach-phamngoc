@@ -42,6 +42,7 @@
       <symbol id="i-close" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></symbol>
       <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></symbol>
       <symbol id="i-moon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></symbol>
+      <symbol id="i-expand" viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></symbol>
       <symbol id="i-up" viewBox="0 0 24 24"><path d="M12 19V5M5 12l7-7 7 7"/></symbol>
     </defs>
   </svg>
@@ -115,7 +116,7 @@
         <div class="hero__visual reveal" aria-hidden="false">
           <div class="arch" aria-hidden="true"></div>
           <figure class="portrait media" data-label="avatar.jpg">
-            <img src="/assets/images/avatar.jpg" alt="Ảnh chân dung Phạm Ngọc Thạch" width="560" height="700" fetchpriority="high">
+            <img src="/assets/images/avatar.jpg" data-full="/assets/images/avatar.jpg" alt="Ảnh chân dung Phạm Ngọc Thạch" width="560" height="700" fetchpriority="high">
           </figure>
           <!-- Floating video-editing tools -->
           <img class="tool tool--clapper" src="/assets/images/tools/clapper.webp?v=2" alt="" width="176" height="176" aria-hidden="true">
@@ -327,7 +328,7 @@
         <div class="acts">
           <article class="act reveal">
             <figure class="act__media media" data-label="activities/kt-lens.jpg">
-              <img src="/assets/images/activities/kt-lens.jpg" alt="Hậu trường quay phim ngắn KT Lens" loading="lazy" width="800" height="500">
+              <img src="/assets/images/activities/kt-lens.jpg" data-full="/assets/images/activities/kt-lens-lg.jpg" alt="Hậu trường quay phim ngắn KT Lens" loading="lazy" width="800" height="500">
               <span class="tag"><svg class="icon"><use href="#i-clapper"/></svg>Trợ&nbsp;lý&nbsp;đạo&nbsp;diễn</span>
             </figure>
             <div class="act__body">
@@ -337,7 +338,7 @@
           </article>
           <article class="act reveal">
             <figure class="act__media media" data-label="activities/tvnd.jpg">
-              <img src="/assets/images/activities/tvnd.jpg" alt="Tham gia diễn xuất trong series của TVND" loading="lazy" width="800" height="500">
+              <img src="/assets/images/activities/tvnd.jpg" data-full="/assets/images/activities/tvnd.jpg" alt="Tham gia diễn xuất trong series của TVND" loading="lazy" width="800" height="500">
               <span class="tag"><svg class="icon"><use href="#i-video"/></svg>Diễn viên</span>
             </figure>
             <div class="act__body">
@@ -347,7 +348,7 @@
           </article>
           <article class="act act--award reveal">
             <figure class="act__media media" data-label="activities/gala-nha-trang.jpg">
-              <img src="/assets/images/activities/gala-nha-trang.jpg" alt="Tiết mục văn nghệ đêm Gala Nha Trang 2026" loading="lazy" width="800" height="500">
+              <img src="/assets/images/activities/gala-nha-trang.jpg" data-full="/assets/images/activities/gala-nha-trang-lg.jpg" alt="Tiết mục văn nghệ đêm Gala Nha Trang 2026" loading="lazy" width="800" height="500">
               <span class="tag"><svg class="icon"><use href="#i-music"/></svg>Biểu&nbsp;diễn&nbsp;chính</span>
               <span class="award"><svg class="icon"><use href="#i-trophy"/></svg>Giải 3</span>
               <button class="act__play" type="button"
@@ -365,7 +366,7 @@
           </article>
           <article class="act reveal">
             <figure class="act__media media" data-label="activities/company-party.jpg">
-              <img src="/assets/images/activities/company-party.jpg" alt="Hỗ trợ quay chụp tiệc công ty" loading="lazy" width="800" height="500">
+              <img src="/assets/images/activities/company-party.jpg" data-full="/assets/images/activities/company-party-lg.jpg" alt="Hỗ trợ quay chụp tiệc công ty" loading="lazy" width="800" height="500">
               <span class="tag"><svg class="icon"><use href="#i-camera"/></svg>Setup&nbsp;·&nbsp;Quay&nbsp;·&nbsp;Chụp</span>
             </figure>
             <div class="act__body">
@@ -424,7 +425,23 @@
     <a href="#dinh-huong" data-target="dinh-huong">05</a>
   </nav>
 
-  <!-- Showreel modal -->
+  <!-- Image lightbox -->
+  <dialog class="lightbox" id="lightbox" aria-label="Xem ảnh">
+    <figure class="lightbox__figure">
+      <img class="lightbox__img" alt="">
+      <figcaption class="lightbox__caption"></figcaption>
+      <button class="act__play lightbox__play" type="button" hidden>
+        <span class="act__play-btn"><svg class="icon icon--lg"><use href="#i-play"/></svg></span>
+        <span class="act__play-label">Xem tiết mục</span>
+      </button>
+    </figure>
+    <button class="lightbox__btn lightbox__close" type="button" aria-label="Đóng ảnh" data-close>
+      <svg class="icon icon--lg"><use href="#i-close"/></svg>
+    </button>
+  </dialog>
+
+  <!-- Video modal -->
+
   <dialog class="modal" id="video-modal" aria-label="Trình phát video">
     <button class="modal__close" type="button" aria-label="Đóng video" data-close>
       <svg class="icon icon--lg"><use href="#i-close"/></svg>

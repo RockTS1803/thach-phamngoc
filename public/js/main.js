@@ -126,9 +126,50 @@
   };
   document.querySelectorAll('[data-video]').forEach((btn) => btn.addEventListener('click', () => openVideo(btn)));
 
-  // TikTok videos play inside the page via TikTok's embed player
+  /* TikTok videos:
+     1) play the pre-downloaded copy (assets/videos/tiktok/<id>.mp4) — fast, our own server
+     2) if that file is missing, fall back to TikTok's embed player */
+  const localSrc = (id) => `/assets/videos/tiktok/${id}.mp4`;
+  const missingLocal = new Set();
+
+  // Point the modal's <video> at a card's local file; also used on hover to buffer ahead
+  const prepareLocal = (card, id) => {
+    if (missingLocal.has(id)) return false;
+    const src = localSrc(id);
+    if (video.getAttribute('src') !== src) {
+      video.preload = 'auto';
+      video.src = src;
+      const poster = card.querySelector('.vcard__media img');
+      if (poster && poster.naturalWidth) video.poster = poster.currentSrc; else video.removeAttribute('poster');
+    }
+    return true;
+  };
+
   const openTikTok = (card, id) => {
     lastTrigger = card;
+    clearTikTok();
+    sourceLink.href = card.href;
+    sourceLink.hidden = false;
+    if (prepareLocal(card, id)) {
+      video.hidden = false;
+      if (!modal.open) modal.showModal();
+      video.play().catch(() => {});
+    } else {
+      openEmbed(card, id);
+    }
+  };
+
+  // Local copy failed to load -> remember it and switch to the TikTok player
+  video.addEventListener('error', () => {
+    const m = (video.getAttribute('src') || '').match(/\/tiktok\/(\d+)\.mp4$/);
+    if (!m) return;
+    missingLocal.add(m[1]);
+    video.removeAttribute('src');
+    video.load();
+    if (modal.open && lastTrigger && lastTrigger.dataset.tiktokId === m[1]) openEmbed(lastTrigger, m[1]);
+  });
+
+  const openEmbed = (card, id) => {
     clearTikTok();
     video.pause();
     video.hidden = true;
@@ -142,11 +183,17 @@
     modal.insertBefore(frame, sourceLink);
     sourceLink.href = card.href;
     sourceLink.hidden = false;
-    modal.showModal();
+    if (!modal.open) modal.showModal();
   };
   document.querySelectorAll('a.vcard[href*="/video/"]').forEach((card) => {
     const id = (card.href.match(/\/video\/(\d+)/) || [])[1];
     if (!id) return;
+    card.dataset.tiktokId = id;
+    // start buffering when the user shows intent (hover / keyboard focus / touch)
+    const warm = () => { if (!modal.open) prepareLocal(card, id); };
+    card.addEventListener('pointerenter', warm);
+    card.addEventListener('focus', warm);
+    card.addEventListener('touchstart', warm, { passive: true });
     card.addEventListener('click', (e) => {
       // keep ctrl/cmd/shift/middle-click = open TikTok in a new tab
       if (e.ctrlKey || e.metaKey || e.shiftKey || e.button !== 0) return;
@@ -169,6 +216,60 @@
     clearTikTok();
     if (lastTrigger) lastTrigger.focus({ preventScroll: true });
   });
+
+  /* ---------- Image lightbox (one image at a time) ---------- */
+  const lb = document.getElementById('lightbox');
+  const lbImg = lb.querySelector('.lightbox__img');
+  const lbCap = lb.querySelector('.lightbox__caption');
+  const lbPlay = lb.querySelector('.lightbox__play');
+  let lbTrigger = null;
+  let lbVideoTrigger = null; // the card's "Xem tiết mục" button, if any
+
+  const captionFor = (img) => {
+    const card = img.closest('.act');
+    if (!card) return img.alt;
+    const title = card.querySelector('h3')?.textContent.trim();
+    const desc = card.querySelector('.act__body p')?.textContent.trim();
+    return [title, desc].filter(Boolean).join(' — ');
+  };
+
+  const openLightbox = (img, trigger) => {
+    if (!img.naturalWidth) return; // image missing
+    lbTrigger = trigger;
+    lbImg.classList.add('is-loading');
+    lbImg.onload = () => lbImg.classList.remove('is-loading');
+    lbImg.src = img.dataset.full || img.currentSrc || img.src;
+    lbImg.alt = img.alt;
+    lbCap.textContent = captionFor(img);
+    // cards with a video (Gala) keep their "Xem tiết mục" button inside the lightbox
+    lbVideoTrigger = img.closest('figure').querySelector('[data-video]');
+    lbPlay.hidden = !lbVideoTrigger;
+    if (lbVideoTrigger) lbPlay.setAttribute('aria-label', lbVideoTrigger.getAttribute('aria-label') || 'Xem video');
+    lb.showModal();
+  };
+
+  // Make images zoomable: an invisible button covers each one
+  document.querySelectorAll('.act__media img[data-full], .portrait img[data-full]').forEach((img) => {
+    const box = img.closest('figure');
+    const btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'zoom-btn';
+    btn.setAttribute('aria-label', `Phóng to ảnh: ${img.alt}`);
+    btn.innerHTML = '<span class="zoom-btn__hint" aria-hidden="true"><svg class="icon"><use href="#i-expand"/></svg></span>';
+    btn.addEventListener('click', () => openLightbox(img, btn));
+    box.classList.add('zoomable');
+    box.appendChild(btn);
+  });
+
+  lbPlay.addEventListener('click', () => {
+    const trigger = lbVideoTrigger;
+    lbTrigger = null; // focus goes back to the card via the video modal instead
+    lb.close();
+    if (trigger) openVideo(trigger);
+  });
+  lb.querySelector('[data-close]').addEventListener('click', () => lb.close());
+  lb.addEventListener('click', (e) => { if (e.target === lb || e.target.classList.contains('lightbox__figure')) lb.close(); });
+  lb.addEventListener('close', () => { if (lbTrigger) lbTrigger.focus({ preventScroll: true }); });
 
   /* ---------- Light / dark theme ---------- */
   const root = document.documentElement;
