@@ -273,7 +273,7 @@
   };
 
   // Make images zoomable: an invisible button covers each one
-  document.querySelectorAll('.act__media img[data-full], .portrait img[data-full]').forEach((img) => {
+  document.querySelectorAll('.act__media img[data-full]').forEach((img) => {
     const box = img.closest('figure');
     const btn = document.createElement('button');
     btn.type = 'button';

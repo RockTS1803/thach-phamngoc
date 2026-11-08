@@ -828,7 +828,6 @@ img[data-optional].is-missing { display: none; }
 .zoom-btn__hint .icon { width: 16px; height: 16px; }
 .zoom-btn:hover .zoom-btn__hint, .zoom-btn:focus-visible .zoom-btn__hint { opacity: 1; transform: none; }
 @media (hover: none) { .zoom-btn__hint { opacity: 1; transform: none; } }
-.portrait .zoom-btn__hint { top: auto; bottom: 14px; left: 50%; translate: -50% 0; }
 
 /* stop the page scrolling behind any open dialog */
 html:has(dialog[open]) { overflow: hidden; }
