@@ -908,3 +908,12 @@ html:has(dialog[open]) { overflow: hidden; }
   .future__content { padding-bottom: 0; }
   .future__media { width: min(260px, 72%); margin: 0 auto clamp(24px, 6vw, 40px); transform: none; }
 }
+
+/* Full-width activity card: image left, text right (stacks on small screens) */
+.act--wide { grid-column: 1 / -1; display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); align-items: center; gap: 8px; }
+.act--wide .act__body { padding: 18px clamp(14px, 3vw, 36px); }
+.act--wide .act__body h3 { font-size: clamp(1.2rem, 2vw, 1.5rem); }
+.act__media--doc { background: #fff; }
+.act__media--doc img { object-position: 50% 0%; }
+@media (max-width: 900px) { .act--wide { grid-template-columns: 1fr; gap: 0; } }
+.act__link { margin-top: 16px; }
