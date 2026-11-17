@@ -245,7 +245,8 @@
   const lb = document.getElementById('lightbox');
   const lbImg = lb.querySelector('.lightbox__img');
   const lbCap = lb.querySelector('.lightbox__caption');
-  const lbPlay = lb.querySelector('.lightbox__play');
+  const lbPlay = lb.querySelector('button.lightbox__play');
+  const lbLink = lb.querySelector('.lightbox__link');
   let lbTrigger = null;
   let lbVideoTrigger = null; // the card's "Xem tiết mục" button, if any
 
@@ -269,6 +270,14 @@
     lbVideoTrigger = img.closest('figure').querySelector('[data-video]');
     lbPlay.hidden = !lbVideoTrigger;
     if (lbVideoTrigger) lbPlay.setAttribute('aria-label', lbVideoTrigger.getAttribute('aria-label') || 'Xem video');
+    // cards with an external link pill (e.g. "Xem tài liệu") keep it inside the lightbox too
+    const cardLink = img.closest('figure').querySelector('a.act__play[href]');
+    lbLink.hidden = !cardLink;
+    if (cardLink) {
+      lbLink.href = cardLink.href;
+      lbLink.setAttribute('aria-label', cardLink.getAttribute('aria-label') || '');
+      lbLink.querySelector('.act__play-label').textContent = cardLink.querySelector('.act__play-label').textContent;
+    }
     lb.showModal();
   };
 

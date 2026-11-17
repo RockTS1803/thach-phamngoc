@@ -916,4 +916,3 @@ html:has(dialog[open]) { overflow: hidden; }
 .act__media--doc { background: #fff; }
 .act__media--doc img { object-position: 50% 0%; }
 @media (max-width: 900px) { .act--wide { grid-template-columns: 1fr; gap: 0; } }
-.act__link { margin-top: 16px; }
